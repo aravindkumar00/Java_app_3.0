@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('clone the project') {
+            steps {
+                git branch: 'main', credentialsId: '2221fb1a-2841-4b13-874f-252fa4f82623', url: 'https://github.com/aravindkumar00/Java_app_3.0.git'
+            }
+        }
+    }
+}
