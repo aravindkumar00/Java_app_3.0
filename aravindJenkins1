@@ -43,5 +43,23 @@ pipeline {
                 sh "mvn install -DskipTests"
             }
         }
+        stage('Create a Image')
+        {
+            steps{
+                docker build -t aravindkumar123/cicd:1 .
+            }
+        }
+          stage('Login to Docker Hub')
+        {
+            steps{
+                docker login -u aravindkumar123 -p Aravind@111
+            }
+        }
+          stage('Login to Docker Hub')
+        {
+            steps{
+                docker push aravindkumar123/cicd:1
+            }
+        }
     }
 }
