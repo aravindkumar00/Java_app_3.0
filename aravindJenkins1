@@ -55,7 +55,7 @@ pipeline {
                 sh 'docker login -u aravindkumar123 -p Aravind@111'
             }
         }
-          stage('Login to Docker Hub')
+          stage('push to Docker Hub')
         {
             steps{
                sh 'docker push aravindkumar123/cicd:1'
