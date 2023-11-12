@@ -7,5 +7,17 @@ pipeline {
                 git branch: 'main', credentialsId: '2221fb1a-2841-4b13-874f-252fa4f82623', url: 'https://github.com/aravindkumar00/Java_app_3.0.git'
             }
         }
+        stage('Test the project')
+        {
+            steps{
+                sh "mvn clean test"
+            }
+        }
+         stage('CodeQuality and Code Coverage')
+        {
+            steps{
+                sh "mvn sonar:sonar"
+            }
+        }
     }
 }
