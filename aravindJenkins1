@@ -49,6 +49,12 @@ pipeline {
                 sh 'docker build -t aravindkumar123/cicd:1 .'
             }
         }
+        stage('Image Scan')
+        {
+            steps{   
+                 sh 'trivy image aravindkumar123/cicd:1 > scan.txt cat scan.txt'
+            }
+        }
           stage('Login to Docker Hub')
         {
             steps{
