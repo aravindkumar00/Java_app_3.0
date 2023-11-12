@@ -38,7 +38,7 @@ pipeline {
                 }
             }
         }
-        stage(''Build a Image){
+        stage('Build a Image'){
             steps{
                 sh "mvn install -DskipTests"
             }
