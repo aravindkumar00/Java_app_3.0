@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools{
-        sonar "sonarqube"
-    }
     stages {
         stage('clone the project') {
             steps {
