@@ -12,7 +12,7 @@ pipeline {
                 sh "mvn clean test"
             }
         }
-         /*stage('CodeQuality and Code Coverage')
+         stage('CodeQuality and Code Coverage')
         {
             steps{
                script{
@@ -23,6 +23,6 @@ pipeline {
                     }
                }
             }
-        }*/
+        }
     }
 }
