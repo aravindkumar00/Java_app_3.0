@@ -38,5 +38,10 @@ pipeline {
                 }
             }
         }
+        stage{
+            steps{
+                sh "mvn install -DskipTests"
+            }
+        }
     }
 }
