@@ -10,9 +10,16 @@ pipeline {
         {
             steps{
                 sh "mvn clean test"
+                sh 'mvn verify -DskipUnitTests'
             }
         }
-         stage('CodeQuality and Code Coverage')
+        stage('Integration testing')
+        {
+            steps{
+                sh 'mvn verify -DskipUnitTests'
+            }
+        }
+        stage('CodeQuality and Code Coverage')
         {
             steps{
                script{
@@ -22,6 +29,13 @@ pipeline {
                         sh "mvn sonar:sonar"
                     }
                }
+            }
+        }
+        stage('Quality Gates'){
+            steps{
+                script{
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube'
+                }
             }
         }
     }
