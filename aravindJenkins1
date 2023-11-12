@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools{
+        sonar "sonarqube"
+    }
     stages {
         stage('clone the project') {
             steps {
@@ -17,7 +19,7 @@ pipeline {
         {
             steps{
                 withSonarQubeEnv(credentialsId: 'sonarqube-api') {
-                    sh "mvn sonar:sonar"
+                sh "mvn sonar:sonar"
                 }
             }
         }
