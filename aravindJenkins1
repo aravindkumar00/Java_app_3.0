@@ -18,9 +18,12 @@ pipeline {
          stage('CodeQuality and Code Coverage')
         {
             steps{
-                withSonarQubeEnv(credentialsId: 'sonarqube-api') {
-                sh "mvn sonar:sonar"
-                }
+               script{
+                   
+                  withSonarQubeEnv(credentialsId: 'sonarqube') {
+                        sh "mvn sonar:sonar"
+                    }
+               }
             }
         }
     }
