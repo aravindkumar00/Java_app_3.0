@@ -18,6 +18,7 @@ pipeline {
                script{
                    
                   withSonarQubeEnv(credentialsId: 'sonarqube') {
+                        // some block
                         sh "mvn sonar:sonar"
                     }
                }
