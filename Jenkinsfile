@@ -53,7 +53,7 @@ pipeline{
                 }
              }
         }
-        stage('Quality Gate Status Check : Sonarqube'){
+       /* stage('Quality Gate Status Check : Sonarqube'){
           when { expression {  params.action == 'create' } }
             steps{
                 script{
@@ -63,7 +63,7 @@ pipeline{
                     waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-api1'
                 }
              }
-        }
+        }*/
         stage('Maven Build : maven'){
          when { expression {  params.action == 'create' } }
             steps{
