@@ -78,7 +78,9 @@ pipeline{
         stage('JFrog')
         {
             steps{
-                sh "mvn deploy"
+                sshagent(['jrog']) {
+                    sh 'mvn deploy -DaltDeploymentRepository=id::layout::http://3.108.237.86:8082/artifactory/libs-snapshot-local/  -Dartifactory.publish.username=admin -Dartifactory.publish.password=Aravind@111'
+                }
             }
         }
         /*stage('Docker Login')
