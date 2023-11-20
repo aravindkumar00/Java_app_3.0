@@ -73,12 +73,18 @@ pipeline{
                }
             }
         }
+        stage('JFrog')
+        {
+            steps{
+                sh "mvn deploy"
+            }
+        }
         /*stage('Docker Login')
         {
             steps{
                 sh "docker login -u aravindkumar123 -p Aravind@111"
             }
-        }*/
+        }
         stage('Docker Image Build'){
          when { expression {  params.action == 'create' } }
             steps{
@@ -114,6 +120,6 @@ pipeline{
                    dockerImageCleanup("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
-        }      
+        } */     
     }
 }
