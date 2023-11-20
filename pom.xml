@@ -57,6 +57,22 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+         
+<distributionManagement>
+	
+	    <repository>
+	      <id>JFrog</id>
+	      <name>JFrog Repo</name>
+	      <url>http://13.232.42.5:8082/artifactory/libs-release-local/</url>
+	    </repository>
+	    
+	    <snapshotRepository>
+	      <id>JFrog</id>
+	      <name>JFrog </name>
+	      <url>http://13.232.42.5:8082/artifactory/libs-snapshot-local/</url>
+	    </snapshotRepository>
+	    
+	</distributionManagement>
 
     <build>
         <plugins>
