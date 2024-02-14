@@ -73,7 +73,7 @@ pipeline{
                }
             }
         }
-        stage('Docker Image Scan: trivy '){
+        stage('JFROG '){
          when { expression {  params.action == 'create' } }
             steps{
                script{
