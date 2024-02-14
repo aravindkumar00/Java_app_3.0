@@ -3,9 +3,8 @@
 pipeline{
 
     agent any
-    tools{
-        maven "maven"
-    }
+    //agent { label 'Demo' }
+
     parameters{
 
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
@@ -21,7 +20,7 @@ pipeline{
             steps{
             gitCheckout(
                 branch: "main",
-                url: "https://github.com/praveen1994dec/Java_app_3.0.git"
+                url: "https://github.com/aravindkumar00/Java_app_3.0.git"
             )
             }
         }
@@ -45,27 +44,26 @@ pipeline{
                }
             }
         }
-         /*stage('Static code analysis: Sonarqube'){
-          when { expression {  params.action == 'create' } }
+        stage('Static code analysis: Sonarqube'){
+         when { expression {  params.action == 'create' } }
             steps{
-                script{
+               script{
                    
-                    def SonarQubecredentialsId = 'sonarqube-api1'
-                    statiCodeAnalysis(SonarQubecredentialsId)
-                }
-             }
-        }
+                   def SonarQubecredentialsId = 'sonarqube-api'
+                   statiCodeAnalysis(SonarQubecredentialsId)
+               }
+            }
+       }
        stage('Quality Gate Status Check : Sonarqube'){
-          when { expression {  params.action == 'create' } }
+         when { expression {  params.action == 'create' } }
             steps{
-                script{
+               script{
                    
-                    //def SonarQubecredentialsId = 'sonarqube-api1'
-                    //QualityGateStatus(SonarQubecredentialsId)
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube-api1'
-                }
-             }
-        }*/
+                   def SonarQubecredentialsId = 'sonarqube-api'
+                   QualityGateStatus(SonarQubecredentialsId)
+               }
+            }
+       }
         stage('Maven Build : maven'){
          when { expression {  params.action == 'create' } }
             steps{
@@ -73,20 +71,6 @@ pipeline{
                    
                    mvnBuild()
                }
-            }
-        }
-        stage('JFrog')
-        {
-            steps{
-                sshagent(['jrog']) {
-                    sh 'mvn deploy -DaltDeploymentRepository=id::layout::http://3.108.237.86:8082/artifactory/libs-snapshot-local/  -Dartifactory.publish.username=admin -Dartifactory.publish.password=Aravind@111'
-                }
-            }
-        }
-        /*stage('Docker Login')
-        {
-            steps{
-                sh "docker login -u aravindkumar123 -p Aravind@111"
             }
         }
         stage('Docker Image Build'){
@@ -124,6 +108,6 @@ pipeline{
                    dockerImageCleanup("${params.ImageName}","${params.ImageTag}","${params.DockerHubUser}")
                }
             }
-        } */     
+        }      
     }
 }
